@@ -1,0 +1,96 @@
+{
+	"name": "Pipeline SQL DB parametros",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTableFinanceiro_comParam",
+						"type": "DatasetReference",
+						"parameters": {
+							"parDS_SQLName": {
+								"value": "@pipeline().parameters.parPL_SQL",
+								"type": "Expression"
+							},
+							"parDS_DBName": {
+								"value": "@pipeline().parameters.parPL_DB",
+								"type": "Expression"
+							},
+							"parDS_UserName": {
+								"value": "@pipeline().parameters.parPL_User",
+								"type": "Expression"
+							},
+							"parDS_UserPWD": {
+								"value": "@pipeline().parameters.parPL_PDW",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet_teste",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"parPL_SQL": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod.database.windows.net"
+			},
+			"parPL_DB": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod"
+			},
+			"parPL_User": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parPL_PDW": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-04-18T14:11:30Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

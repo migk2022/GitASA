@@ -1,0 +1,117 @@
+{
+	"name": "AzureSqlTableFinanceiro_comParam",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase_Financeiro",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"parLS_UserName": {
+					"value": "@dataset().parDS_UserName",
+					"type": "Expression"
+				},
+				"parLS_UserPWD": {
+					"value": "@dataset().parDS_UserPWD",
+					"type": "Expression"
+				},
+				"parLS_SQLName": {
+					"value": "@dataset().parDS_SQLName",
+					"type": "Expression"
+				},
+				"parLS_DBName": {
+					"value": "@dataset().parDS_DBName",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"parDS_SQLName": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod.database.windows.net"
+			},
+			"parDS_DBName": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod"
+			},
+			"parDS_UserName": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parDS_UserPWD": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NameStyle",
+				"type": "bit"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MiddleName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Suffix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesPerson",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PasswordHash",
+				"type": "varchar"
+			},
+			{
+				"name": "PasswordSalt",
+				"type": "varchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

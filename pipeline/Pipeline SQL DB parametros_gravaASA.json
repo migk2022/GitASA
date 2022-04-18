@@ -1,0 +1,123 @@
+{
+	"name": "Pipeline SQL DB parametros_gravaASA",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowCopyCommand": true
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "syn-sicn-prod-WorkspaceDefaultStorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "raw"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CustomerID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "clienteid",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTableFinanceiro_comParam",
+						"type": "DatasetReference",
+						"parameters": {
+							"parDS_SQLName": {
+								"value": "@pipeline().parameters.parPL_SQL",
+								"type": "Expression"
+							},
+							"parDS_DBName": {
+								"value": "@pipeline().parameters.parPL_DB",
+								"type": "Expression"
+							},
+							"parDS_UserName": {
+								"value": "@pipeline().parameters.parPL_User",
+								"type": "Expression"
+							},
+							"parDS_UserPWD": {
+								"value": "@pipeline().parameters.parPL_PDW",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSynapseAnalyticsTable_Param",
+						"type": "DatasetReference",
+						"parameters": {
+							"parDS_userAsa": {
+								"value": "@pipeline().parameters.parPL_UserAsa",
+								"type": "Expression"
+							},
+							"parDS_pwdAsa": {
+								"value": "@pipeline().parameters.parPL_PwdAsa",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"parPL_SQL": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod.database.windows.net"
+			},
+			"parPL_DB": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod"
+			},
+			"parPL_User": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parPL_PDW": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			},
+			"parPL_UserAsa": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parPL_PwdAsa": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-04-18T14:36:51Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

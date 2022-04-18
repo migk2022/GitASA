@@ -1,0 +1,33 @@
+{
+	"name": "AzureSqlDatabase_Financeiro",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"parameters": {
+			"parLS_UserName": {
+				"type": "String",
+				"defaultValue": "admsql01"
+			},
+			"parLS_UserPWD": {
+				"type": "String",
+				"defaultValue": "teste123*"
+			},
+			"parLS_SQLName": {
+				"type": "String",
+				"defaultValue": "sql-bifinanceiro-prod.database.windows.net"
+			},
+			"parLS_DBName": {
+				"type": "String",
+				"defaultValue": "sql-bifinanceiro-prod"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@{linkedService().parLS_SQLName};Initial Catalog=@{linkedService().parLS_DBName};User ID=@{linkedService().parLS_UserName};Password=@{linkedService().parLS_UserPWD}"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

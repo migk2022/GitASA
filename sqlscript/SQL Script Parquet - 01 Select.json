@@ -1,0 +1,17 @@
+{
+	"name": "SQL Script Parquet - 01 Select",
+	"properties": {
+		"content": {
+			"query": "SELECT \n    TOP 10 *\nFROM\n    OPENROWSET(\n            BULK    'https://dlsbvotitsmprod001.dfs.core.windows.net/raw/sales/*',\n            FORMAT= 'PARQUET'\n    ) as resultado\n    ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

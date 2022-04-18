@@ -1,0 +1,75 @@
+{
+	"name": "sqlpooalSalesHeap",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "TransactionId",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Quantity",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TransactionDate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProfitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Hour",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Minute",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StoreId",
+				"type": "smallint",
+				"precision": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "salesHeap"
+		},
+		"sqlPool": {
+			"referenceName": "sqlpool01",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

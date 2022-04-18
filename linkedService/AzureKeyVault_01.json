@@ -1,0 +1,11 @@
+{
+	"name": "AzureKeyVault_01",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://akv-financeiro-001.vault.azure.net/"
+		}
+	}
+}

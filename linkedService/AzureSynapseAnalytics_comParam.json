@@ -1,6 +1,5 @@
 {
 	"name": "AzureSynapseAnalytics_comParam",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"parameters": {
 			"parLS_userAsa": {
@@ -9,17 +8,29 @@
 			},
 			"parLS_userpwdAsa": {
 				"type": "String",
-				"defaultValue": "teste123*"
+				"defaultValue": "asaUserPwd"
 			}
 		},
 		"annotations": [],
 		"type": "AzureSqlDW",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=syn-sicn-prod.sql.azuresynapse.net;Initial Catalog=sqlpool01;User ID=@{linkedService().parLS_userAsa};Password=@{linkedService().parLS_userpwdAsa}"
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=syn-sicn-prod.sql.azuresynapse.net;Initial Catalog=sqlpool01;User ID=@{linkedService().parLS_userAsa}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVaultteste",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().parLS_userpwdAsa",
+					"type": "Expression"
+				}
+			}
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/linkedservices"
 }

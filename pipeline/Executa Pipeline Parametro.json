@@ -1,0 +1,75 @@
+{
+	"name": "Executa Pipeline Parametro",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Pipeline SQL DB parametros_gravaASA",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"parPL_SQL": {
+							"value": "@pipeline().parameters.parPLM_SQL",
+							"type": "Expression"
+						},
+						"parPL_DB": {
+							"value": "@pipeline().parameters.parPLM_DB",
+							"type": "Expression"
+						},
+						"parPL_User": {
+							"value": "@pipeline().parameters.parPLM_USER",
+							"type": "Expression"
+						},
+						"parPL_PDW": {
+							"value": "@pipeline().parameters.parPLM_PWD",
+							"type": "Expression"
+						},
+						"parPL_UserAsa": {
+							"value": "@pipeline().parameters.parPLM_UserASA",
+							"type": "Expression"
+						},
+						"parPL_PwdAsa": {
+							"value": "@pipeline().parameters.parPLM_PwdASA",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"parPLM_SQL": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod.database.windows.net"
+			},
+			"parPLM_DB": {
+				"type": "string",
+				"defaultValue": "sql-bifinanceiro-prod"
+			},
+			"parPLM_USER": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parPLM_PWD": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			},
+			"parPLM_UserASA": {
+				"type": "string",
+				"defaultValue": "admsql01"
+			},
+			"parPLM_PwdASA": {
+				"type": "string",
+				"defaultValue": "teste123*"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-04-18T15:53:20Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

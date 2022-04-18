@@ -1,0 +1,17 @@
+{
+	"name": "Login User e Grant",
+	"properties": {
+		"content": {
+			"query": "user MASTER\ncreate login [usuarioteste] with PASSWORD = 'Teste123*2022'\ncreate login [usuarioconsulta] with PASSWORD = 'Teste123*2022'\n\n\ncreate user [miguelk] from LOGIN [usuarioteste]\n\ncreate user [consulta] from LOGIN [usuarioconsulta]\n\nALTER ROLE db_datareader\n    ADD MEMBER [consulta]\n\nALTER ROLE db_datawriter\n    ADD MEMBER [miguelk]\n\nGRANT REFERENCES \n    ON DATABASE SCOPED CREDENTIAL ::[credencialtokensas] TO consulta",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sqldb-serverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

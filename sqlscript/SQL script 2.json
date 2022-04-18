@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 2",
+	"properties": {
+		"content": {
+			"query": "SELECT SUSER_SNAME(), IS_ROLEMEMBER('db_datawriter', SUSER_SNAME())\n\n\n\nreturns table\nreturn (\n    select condition = 1\n    WHERE\n    (SUSER_SNAME() = 'jovanpop@adventureworks.com' AND _id = 'RS')\n    OR\n    (IS_ROLEMEMBER('AfricaAnalyst', SUSER_SNAME())=1 AND continent_exp='Africa')",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

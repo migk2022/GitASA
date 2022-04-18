@@ -1,0 +1,11 @@
+{
+	"name": "AzureKeyVaultteste",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-sicn.vault.azure.net/"
+		}
+	}
+}

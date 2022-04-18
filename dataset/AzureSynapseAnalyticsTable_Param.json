@@ -1,0 +1,93 @@
+{
+	"name": "AzureSynapseAnalyticsTable_Param",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics_comParam",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"parLS_userAsa": {
+					"value": "@dataset().parDS_userAsa",
+					"type": "Expression"
+				},
+				"parLS_userpwdAsa": {
+					"value": "@dataset().parDS_pwdAsa",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"parDS_userAsa": {
+				"type": "string"
+			},
+			"parDS_pwdAsa": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "TransactionId",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Quantity",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TransactionDate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProfitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Hour",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Minute",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StoreId",
+				"type": "smallint",
+				"precision": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbClienteRoundRobin"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

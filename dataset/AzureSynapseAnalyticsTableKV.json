@@ -1,0 +1,75 @@
+{
+	"name": "AzureSynapseAnalyticsTableKV",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalyticsKV",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "TransactionId",
+				"type": "varchar"
+			},
+			{
+				"name": "CustomerId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductId",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Quantity",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Price",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "TransactionDate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProfitAmount",
+				"type": "decimal",
+				"precision": 38,
+				"scale": 18
+			},
+			{
+				"name": "Hour",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "Minute",
+				"type": "smallint",
+				"precision": 5
+			},
+			{
+				"name": "StoreId",
+				"type": "smallint",
+				"precision": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "salesHeap"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "AzureSynapseAnalytics_comParam",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"parameters": {
+			"parLS_userAsa": {
+				"type": "String",
+				"defaultValue": "admsql01"
+			},
+			"parLS_userpwdAsa": {
+				"type": "String",
+				"defaultValue": "teste123*"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=syn-sicn-prod.sql.azuresynapse.net;Initial Catalog=sqlpool01;User ID=@{linkedService().parLS_userAsa};Password=@{linkedService().parLS_userpwdAsa}"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

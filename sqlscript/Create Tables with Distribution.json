@@ -1,0 +1,17 @@
+{
+	"name": "Create Tables with Distribution",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE [dbo].[tbRoundRobin]\n(\n    clienteid int NOT NULL\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN,\n    CLUSTERED COLUMNSTORE INDEX\n)\nGO\n\nCREATE TABLE [dbo].[tbHashFact]\n(\n    year int not null,\n    clienteid int NOT NULL,\n    produtoid int NOT NULL,\n    vendas DECIMAL(12,2)\n)\nWITH\n(\n    DISTRIBUTION = HASH (year),\n    CLUSTERED COLUMNSTORE INDEX\n)\nGO\n\nCREATE TABLE dbo.tbReplicadoDim (\n    produtoid int not null not null,\n    nomeproduto varchar(100) not null\n)\nWITH\n(DISTRIBUTION = REPLICATE,\n    CLUSTERED COLUMNSTORE INDEX\n)\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "sqlpool01",
+				"poolName": "sqlpool01"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
